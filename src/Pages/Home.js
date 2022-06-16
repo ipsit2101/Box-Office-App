@@ -50,7 +50,7 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
+    <div>
       <MainPageLayout>
         <input
           type="text"
