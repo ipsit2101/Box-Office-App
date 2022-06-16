@@ -2,16 +2,18 @@ import React from "react";
 import { useState } from "react";
 import MainPageLayout from "../My Components/MainPageLayout";
 import { apiGet } from "../Misc/config";
+import ShowGrid from "../My Components/Shows/ShowGrid";
+import ActorGrid from "../My Components/Actor/ActorGrid";
 
 const Home = () => {
   const [input, setInput] = useState("");
   const [results, setResults] = useState(null);
-  const [searchOpion, setSearchOpion] = useState("shows");
+  const [searchOption, setsearchOption] = useState("shows");
 
   const onSearch = () => {
     // function to search for the given query
 
-    apiGet(`/search/${searchOpion}?q=${input}`).then((result) => {
+    apiGet(`/search/${searchOption}?q=${input}`).then((result) => {
       setResults(result);
       console.log(result); // get data from remote API
     });
@@ -29,9 +31,9 @@ const Home = () => {
   };
 
   const changeSearchOption = (option) => {
-    setSearchOpion(option);
+    setsearchOption(option);
   };
-  console.log(searchOpion);
+  console.log(searchOption);
 
   const RenderResults = () => {
     if (results && results.length === 0) {
@@ -41,12 +43,7 @@ const Home = () => {
     if (results && results.length > 0) {
 
       return results[0].show
-        ? results.map((element) => {
-            return <div key={element.show.id}>{element.show.name}</div>;
-          })
-        : results.map((element) => {
-            return <div key={element.person.id}>{element.person.name}</div>;
-          });
+        ? <ShowGrid data  = {results} /> : <ActorGrid data = {results} />
     }
 
     return null;
@@ -68,7 +65,7 @@ const Home = () => {
               id="show-search"
               type="radio"
               value="shows"
-              checked={searchOpion === "shows"}
+              checked={searchOption === "shows"}
               onChange={() => changeSearchOption("shows")}
             />
           </label>
@@ -78,7 +75,7 @@ const Home = () => {
               id="actors-search"
               type="radio"
               value="people"
-              checked={searchOpion === "people"}
+              checked={searchOption === "people"}
               onChange={() => changeSearchOption("people")}
             />
           </label>
