@@ -2,6 +2,10 @@ import React, { useReducer } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { apiGet } from "../Misc/config";
+import ShowContent from "./ShowContent";
+import ShowDetails from "./ShowDetails";
+import ShowSeasons from "./ShowSeasons";
+import ShowCasts from "./ShowCasts";
 
 const initialState = {
   show: null,
@@ -58,7 +62,19 @@ const ShowPage = () => {
   }
   return (
     <div>
-      this is show page
+      <ShowContent />
+      <div>
+        <h2>Details</h2>
+        <ShowDetails />
+      </div>
+      <div>
+        <h2>Seasons</h2>
+        <ShowSeasons />
+      </div>
+      <div>
+        <h2>Casts</h2>
+        <ShowCasts />
+      </div>
     </div>
   )
 };
