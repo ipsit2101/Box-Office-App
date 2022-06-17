@@ -13,7 +13,7 @@ const Home = () => {
   const onSearch = () => {
     // function to search for the given query
 
-    apiGet(`/search/${searchOption}?q=${input}`).then((result) => {
+    apiGet(`/search/${searchOption}?q=${input}`).then(result => {
       setResults(result);
       console.log(result); // get data from remote API
     });

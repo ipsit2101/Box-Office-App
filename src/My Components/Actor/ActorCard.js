@@ -22,7 +22,7 @@ const ActorCard = ({
       <div>
         <p>{country ? `Comes from ${country}` : `Country not known`}</p>
         {birthday ? <p>{`Born on ${birthday}`}</p> : null}
-        <p>{deathday ? `Died on ${deathday}` : `Alive`}</p>
+        <p className="deathday">{deathday ? `Died on ${deathday}` : `Alive`}</p>
       </div>
     </StyledActorCard>
   );
