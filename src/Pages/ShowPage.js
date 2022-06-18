@@ -13,7 +13,7 @@ const initialState = {
   error: null,
 }
 
-const reducer = (prevState, action) => {
+const reducer = (prevState, action) => {         // useReducer hook which manages multiple states in a component   
   switch(action.type) {
     case 'FETCH_SUCCESS': {
       return { isLoading: false, error: null, show: action.show }
@@ -21,7 +21,6 @@ const reducer = (prevState, action) => {
     case 'FETCH_UNSUCCESS': {
       return { ...prevState, isLoading: false, error:  action.error }
     }
-
     default: return prevState;
   }
 }
@@ -62,18 +61,18 @@ const ShowPage = () => {
   }
   return (
     <div>
-      <ShowContent />
+      <ShowContent image = {state.show.image} name = {state.show.name} rating = {state.show.rating} summary = {state.show.summary} genres = {state.show.genres}/>
       <div>
         <h2>Details</h2>
-        <ShowDetails />
+        <ShowDetails status = {state.show.status} network = {state.show.network} premiered = {state.show.premiered} />
       </div>
       <div>
         <h2>Seasons</h2>
-        <ShowSeasons />
+        <ShowSeasons seasons = {state.show._embedded.seasons} />
       </div>
       <div>
         <h2>Casts</h2>
-        <ShowCasts />
+        <ShowCasts cast = {state.show._embedded.cast} />
       </div>
     </div>
   )

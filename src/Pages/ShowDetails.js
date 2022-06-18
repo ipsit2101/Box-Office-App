@@ -1,11 +1,18 @@
-import React from 'react'
+import React from "react";
 
-const ShowDetails = () => {
+const ShowDetails = ({status, premiered, network}) => {
   return (
     <div>
-      x
+      <div>
+        <p>
+          Status: <span>{status}</span>
+        </p>
+        <p>
+          Premiered {premiered} {network ? `on ${network.name}` : null}
+        </p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default ShowDetails;
