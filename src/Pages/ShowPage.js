@@ -6,6 +6,7 @@ import ShowContent from "./ShowContent";
 import ShowDetails from "./ShowDetails";
 import ShowSeasons from "./ShowSeasons";
 import ShowCasts from "./ShowCasts";
+import { InfoBlock, ShowPageWrapper } from "./ShowPageStyling";
 
 const initialState = {
   show: null,
@@ -60,21 +61,21 @@ const ShowPage = () => {
     return <div>Error Ocurred: {state.error}</div>
   }
   return (
-    <div>
+    <ShowPageWrapper>
       <ShowContent image = {state.show.image} name = {state.show.name} rating = {state.show.rating} summary = {state.show.summary} genres = {state.show.genres}/>
-      <div>
+      <InfoBlock>
         <h2>Details</h2>
         <ShowDetails status = {state.show.status} network = {state.show.network} premiered = {state.show.premiered} />
-      </div>
-      <div>
+      </InfoBlock>
+      <InfoBlock>
         <h2>Seasons</h2>
         <ShowSeasons seasons = {state.show._embedded.seasons} />
-      </div>
-      <div>
+      </InfoBlock>
+      <InfoBlock>
         <h2>Casts</h2>
         <ShowCasts cast = {state.show._embedded.cast} />
-      </div>
-    </div>
+      </InfoBlock>
+    </ShowPageWrapper>
   )
 };
 

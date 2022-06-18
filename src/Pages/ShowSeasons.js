@@ -1,8 +1,9 @@
 import React from "react";
+import { SeasonList, SeasonsWrapper } from "./ShowPageStyling";
 
 const ShowSeasons = ( {seasons} ) => {
   return (
-    <div>
+    <SeasonsWrapper>
       <p>
         Seasons in total: <span>{seasons.length}</span>
       </p>
@@ -12,16 +13,16 @@ const ShowSeasons = ( {seasons} ) => {
           {seasons.reduce((acc, season) => acc + season.episodeOrder, 0)}
         </span>
       </p>
-      <div>
+      <SeasonList>
         { seasons.map((season) => (
-          <div key={season.id}>
-            <div>
+          <div key={season.id} className = "season-item">
+            <div className="left">
               <p>Season {season.number}</p>
               <p>
                 Episodes: <span>{season.episodeOrder}</span>
               </p>
             </div>
-            <div>
+            <div className="right">
               Aired:{" "}
               <span>
                 {season.premiereDate} - {season.endDate}
@@ -29,8 +30,8 @@ const ShowSeasons = ( {seasons} ) => {
             </div>
           </div>
         ))}
-      </div>
-    </div>
+      </SeasonList>
+    </SeasonsWrapper>
   );
 };
 

@@ -1,8 +1,9 @@
 import React from "react";
+import { DetailsWrapper } from "./ShowPageStyling";
 
 const ShowDetails = ({status, premiered, network}) => {
   return (
-    <div>
+    <DetailsWrapper>
       <div>
         <p>
           Status: <span>{status}</span>
@@ -11,7 +12,7 @@ const ShowDetails = ({status, premiered, network}) => {
           Premiered {premiered} {network ? `on ${network.name}` : null}
         </p>
       </div>
-    </div>
+    </DetailsWrapper>
   );
 };
 
