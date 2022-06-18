@@ -50,7 +50,6 @@ const Home = () => {
   };
 
   return (
-    <div>
       <MainPageLayout>
         <input
           type="text"
@@ -87,7 +86,6 @@ const Home = () => {
 
         {RenderResults()}
       </MainPageLayout>
-    </div>
   );
 };
 

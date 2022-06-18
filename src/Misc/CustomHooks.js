@@ -24,7 +24,7 @@ function usePersistedReduer(reducer, initialState, key) {
 
     useEffect(() => {
         localStorage.setItem(key, JSON.stringify(state));  // JSON.stringify() converts JS objects to strings to store on the local storage in browser
-    }, [state, key])
+    }, [state, key]);
 
     return [state, dispatch];
 }
