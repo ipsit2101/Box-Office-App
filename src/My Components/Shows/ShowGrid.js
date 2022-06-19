@@ -4,7 +4,7 @@ import IMAGE_NOT_FOUND from "../../Misc/404-not-found.png";
 import { FlexGrid } from "../styled";
 import { useShows } from "../../Misc/CustomHooks";
 
-const ShowGrid = ({ data }) => {
+const ShowGrid = ({ data }) => {   
 
   const [starredShows, dispatchStarredShows] = useShows();
 
