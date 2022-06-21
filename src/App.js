@@ -6,12 +6,14 @@ import ShowPage from "./Pages/ShowPage";
 import Starred from "./Pages/Starred";
 
 const theme = {
+
   mainColors: {
     blue: '#2400ff',
     gray: '#c6c6c6', 
     dark: '#353535',
     maroon: '#5F5F5F',
   },
+  
 };
 
 const App = () => {

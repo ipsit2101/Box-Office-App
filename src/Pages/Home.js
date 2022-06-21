@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useState } from "react";
 import MainPageLayout from "../My Components/MainPageLayout";
 import { apiGet } from "../Misc/config";
@@ -13,35 +13,10 @@ const Home = () => {
   const [results, setResults] = usePersistedSearch();
   const [searchOption, setsearchOption] = useState("shows");
 
-  const onSearch = () => {
-    // function to search for the given query
-
-    apiGet(`/search/${searchOption}?q=${input}`).then((result) => {
-      setResults(result);
-      console.log(result); // get data from remote API
-    });
-  };
-
-  const onInputChange = (event) => {
-    setInput(event.target.value);
-  };
-
-  const onKeyDown = (event) => {
-    if (event.keyCode === 13) {
-      // fires the event only when we press Enter
-      onSearch();
-    }
-  };
-
-  const changeSearchOption = (option) => {
-    setsearchOption(option);
-  };
-  console.log(searchOption);
-
-  const RenderResults = () => {
+  const RenderResults = (results) => {        // this is the function to reder shows cards on the app
     if (results && results.length === 0) {  
       return <CustomResults text = {'No Results :)'} />;
-    }
+    }    
 
     if (results && results.length > 0) {
       return results[0].show ? (
@@ -53,6 +28,31 @@ const Home = () => {
 
     return null;
   };
+
+  const onSearch = () => {
+    // function to search for the given query
+
+    apiGet(`/search/${searchOption}?q=${input}`).then((result) => {
+      setResults(result);
+      console.log(result); // get data from remote API
+    });
+  };
+
+  const onInputChange = useCallback((event) => {
+    setInput(event.target.value);
+  }, [setInput]);
+
+  const onKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      // fires the event only when we press Enter
+      onSearch();
+    }
+  };
+
+  const changeSearchOption = useCallback( (option) => {
+    setsearchOption(option);
+  }, []);
+  console.log(searchOption);
 
   return (
     <MainPageLayout>
@@ -99,7 +99,7 @@ const Home = () => {
         </button>
       </SearchButtonWrapper>
 
-      {RenderResults()}
+      {RenderResults(results)}
     </MainPageLayout>
   );
 };
