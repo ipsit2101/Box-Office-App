@@ -5,6 +5,7 @@ import ShowSeasons from "./ShowSeasons";
 import ShowCasts from "./ShowCasts";
 import { InfoBlock, ShowPageWrapper } from "./ShowPageStyling";
 import { useShow } from "../Misc/CustomHooks";
+import CustomResults from "./CustomResults";
 
 
 const ShowPage = () => {
@@ -15,7 +16,7 @@ const ShowPage = () => {
 
   console.log(state.show);
   if (state.isLoading) {
-    return <div>Data is being loaded</div>
+    return <CustomResults text = {'Data is being loaded...'} />
   }
   if (state.error) {
     return <div>Error Ocurred: {state.error}</div>

@@ -3,6 +3,7 @@ import { apiGet } from '../Misc/config';
 import { useShows } from '../Misc/CustomHooks';
 import MainPageLayout from '../My Components/MainPageLayout';
 import ShowGrid from '../My Components/Shows/ShowGrid';
+import CustomResults from './CustomResults';
 
 const Starred = () => {
 
@@ -36,14 +37,14 @@ const Starred = () => {
 
   return (
     <div>
-      <MainPageLayout>    
+      <MainPageLayout>            
 
-        {isLoading && <div>Loading...</div>}
-        {!isLoading && !starredShowsList && <div>No Shows</div>}
+        {isLoading && <CustomResults text = {'Loading...'} />}
+        {!isLoading && !starredShowsList && <CustomResults text = {'No Starred Shows'} />}
         {!isLoading && error && 
           <div>
             Error Occured: {error}
-          </div>
+          </div>   
         }
         {!isLoading && !error && starredShowsList && <ShowGrid data = {starredShowsList} />}
 

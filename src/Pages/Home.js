@@ -6,6 +6,7 @@ import ShowGrid from "../My Components/Shows/ShowGrid";
 import ActorGrid from "../My Components/Actor/ActorGrid";
 import { useLastQuery, usePersistedSearch } from "../Misc/CustomHooks";
 import { RadioInputsWrapper, SearchButtonWrapper, SearchInput } from "../My Components/HomePageStyling/HomeStyles";
+import CustomResults from "./CustomResults";
 
 const Home = () => {
   const [input, setInput] = useLastQuery();
@@ -38,8 +39,8 @@ const Home = () => {
   console.log(searchOption);
 
   const RenderResults = () => {
-    if (results && results.length === 0) {
-      return <div>No Results</div>;
+    if (results && results.length === 0) {  
+      return <CustomResults text = {'No Results :)'} />;
     }
 
     if (results && results.length > 0) {
