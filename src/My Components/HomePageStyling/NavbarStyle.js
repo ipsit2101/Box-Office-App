@@ -53,7 +53,8 @@ export const TitleWrapper = styled.div`
   }
 
   p {
-    color: ${({ theme }) => theme.mainColors.dark};
+    color: ${({ theme }) => theme.mainColors.maroon};
     margin: 0;
+    font-weight: bold;
   }
 `;

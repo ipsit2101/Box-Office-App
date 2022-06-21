@@ -4,7 +4,8 @@ import ShowDetails from "./ShowDetails";
 import ShowSeasons from "./ShowSeasons";
 import ShowCasts from "./ShowCasts";
 import { InfoBlock, ShowPageWrapper } from "./ShowPageStyling";
-import useShow from "../Misc/CustomHooks";
+import { useShow } from "../Misc/CustomHooks";
+
 
 const ShowPage = () => {
 

@@ -34,12 +34,12 @@ export function useShows(key) {
     return usePersistedReduer(ShowsReducer, [], key);
 }
 
-export function useLastQuery(key = 'lastQuery') {
+export function useLastQuery(key = 'lastQuery') {   // custom hook to make texts inside search bar persist upon refreshing
     const [input, setInput] = useState(() => {
         const persisted = sessionStorage.getItem(key);
 
         return persisted ? JSON.parse(persisted) : ''; 
-    });
+    });   
 
     function setPersistedInput(newState) {
         setInput(newState);
@@ -59,9 +59,9 @@ const reducer = (prevState, action) => {         // useReducer hook which manage
       }
       default: return prevState;
     }
-}
+}  
 
-const useShow = ( showId ) => {
+export function useShow(showId) {          // custom hook to enable show page data persist upon refreshing
     const [state, dispatch] = useReducer(reducer, {
         show: null, 
         isLoading: true,
@@ -84,7 +84,7 @@ const useShow = ( showId ) => {
             dispatch({ type: 'FETCH_UNSUCCESS', error: err.message });
         }
         })
-        
+
         return () => {
             isMounted = false;
         }
@@ -94,4 +94,17 @@ const useShow = ( showId ) => {
     return state;
 }
 
-export default useShow;
+export function usePersistedSearch(key = 'lastItem') {   // custom hook to preserve data of ShowCard component upon refreshing
+    
+    const [results, setResults] = useState(() => {
+        const persisted = sessionStorage.getItem(key);
+        return persisted ? JSON.parse(persisted) : null; 
+    });
+
+    function setPersistedItems(newState) {
+        setResults(newState);
+        sessionStorage.setItem(key, JSON.stringify(newState));
+    }
+
+    return [results, setPersistedItems];
+}
